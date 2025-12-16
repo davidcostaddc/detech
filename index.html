@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>De-Tech | Loja de Serviços Digitais</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header class="cabecalho">
+    <img src="https://i.ibb.co/tM3BPY49/IMAGEM-ALTA-QUALIDADE.jpg" class="logo" alt="De-Tech logo">
+    <div class="titulo-wrapper">
+      <h1 class="titulo">
+        <span id="typewriter"></span>
+        <span class="tech-word"></span>
+        <span class="cursor">|</span>
+      </h1>
+      <p class="tagline">Sua solução tecnológica completa.</p>
+    </div>
+    <button class="carrinho-btn" id="toggleCartBtn">Carrinho 🛒 <span id="contador">0</span></button>
+  </header>
+
+  <!-- MENU SUPERIOR -->
+  <nav class="menu-topo">
+
+    <div class="menu-item">
+      <button class="menu-btn" onclick="voltarInicio()">Início</button>
+    </div>
+
+    <div class="menu-item">
+      <button class="menu-btn">Formatação</button>
+      <div class="submenu">
+        <button onclick="abrirCategoria('formatacao_celular')">Celulares</button>
+        <button onclick="abrirCategoria('formatacao_pc')">Computadores</button>
+        <button onclick="abrirCategoria('formatacao_notebook')">Notebooks</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <button class="menu-btn">Recuperação</button>
+      <div class="submenu">
+        <button onclick="abrirCategoria('recuperacao_senhas_web')">Senhas Web</button>
+        <button onclick="abrirCategoria('recuperacao_redes')">Redes Sociais</button>
+        <button onclick="abrirCategoria('recuperacao_apps')">Aplicativos</button>
+        <button onclick="abrirCategoria('recuperacao_windows')">Senha Windows</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <button class="menu-btn">Designer</button>
+      <div class="submenu submenu-large">
+        <div class="submenu-group">
+          <div class="submenu-group-title">Criação</div>
+          <button onclick="abrirCategoria('designer_logos')">Logos</button>
+          <button onclick="abrirCategoria('identidade_visual')">Identidade Visual</button>
+          <button onclick="abrirCategoria('material_impresso')">Material Impresso</button>
+          <button onclick="abrirCategoria('midia_social')">Mídia Social</button>
+        </div>
+
+        <div class="submenu-group">
+          <div class="submenu-group-title">Edição</div>
+          <button onclick="abrirCategoria('restauracao')">Restauração</button>
+          <button onclick="abrirCategoria('edicao')">Edição de Imagens</button>
+          <button onclick="abrirCategoria('tratamento_foto')">Tratamento de Foto</button>
+          <button onclick="abrirCategoria('modificacoes_extras')">Modificações Extras</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <button class="menu-btn">Segurança Digital</button>
+      <div class="submenu">
+        <button onclick="abrirCategoria('analiseRiscos')">Análise de Riscos</button>
+        <button onclick="abrirCategoria('senhaSegura')">Configuração de Senhas</button>
+        <button onclick="abrirCategoria('protecoes')">Proteções e Hardening</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <button class="menu-btn">Edição de Vídeos</button>
+      <div class="submenu">
+        <button onclick="abrirCategoria('video_corte')">Corte e Montagem</button>
+        <button onclick="abrirCategoria('video_efeitos')">Efeitos Visuais</button>
+        <button onclick="abrirCategoria('video_correcao')">Correção de Cor</button>
+        <button onclick="abrirCategoria('video_audio')">Áudio e Mixagem</button>
+        <button onclick="abrirCategoria('video_transicoes')">Transições</button>
+        <button onclick="abrirCategoria('video_render')">Renderização Final</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <button class="menu-btn">Slides</button>
+      <div class="submenu">
+        <button onclick="abrirCategoria('slides_criacao')">Criação</button>
+        <button onclick="abrirCategoria('slides_design')">Design</button>
+        <button onclick="abrirCategoria('slides_transicoes')">Animações</button>
+        <button onclick="abrirCategoria('slides_graficos')">Gráficos</button>
+        <button onclick="abrirCategoria('slides_traducao')">Tradução</button>
+        <button onclick="abrirCategoria('slides_edicao')">Edição</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <button class="menu-btn">Criação de Sites</button>
+      <div class="submenu">
+        <button onclick="abrirCategoria('site_simples')">Site Simples</button>
+        <button onclick="abrirCategoria('site_institucional')">Institucional</button>
+        <button onclick="abrirCategoria('site_loja')">Loja Virtual</button>
+        <button onclick="abrirCategoria('site_portfolio')">Portfólio</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Seções principais (com ids usados pelo script) -->
+  <main id="conteudo">
+
+    <section id="secao-destaques">
+      <!-- Carrossel e destaques -->
+      <section id="carrossel-servicos">
+        <div class="carrossel-container">
+          <div class="carrossel-track">
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M8 10h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Formatação Completa
+            </div>
+
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M7 8h10M7 12h10M7 16h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Limpeza + Backup
+            </div>
+
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 17a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M17 11V9a5 5 0 10-10 0v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+              Recuperação de Contas
+            </div>
+
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15 8l6 1-4.5 4 1 6L12 15l-5.5 4 1-6L3 9l6-1 3-6z" />
+                </svg>
+              </span>
+              Criação de Logos
+            </div>
+
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2l2 5h5l-4 3 1 5-4-3-4 3 1-5-4-3h5l2-5z" stroke="currentColor" stroke-width="1.2"/>
+                </svg>
+              </span>
+              Segurança Digital
+            </div>
+
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M4 10h16" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M8 6v-2" stroke="currentColor" stroke-width="1.4"/>
+                </svg>
+              </span>
+              Edição de Vídeos
+            </div>
+
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 12h18" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M12 3v18" stroke="currentColor" stroke-width="1.4"/>
+                </svg>
+              </span>
+              Criação de Sites
+            </div>
+
+            <div class="carrossel-item">
+              <span class="carrossel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 6h18v12H3z" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M7 10h10" stroke="currentColor" stroke-width="1.4"/>
+                </svg>
+              </span>
+              Currículos Profissionais
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="secao-sobre" class="secao">
+      <h2 class="titulo-centro sobre-titulo"><span class="sobre-main">Sobre a De</span><span class="tech-part">-Tech</span></h2>
+      
+      <div class="sobre-container">
+        <div class="sobre-esquerda">
+          <div class="sobre-descricao">
+            <h3>Quem Somos</h3>
+            <p>Somos uma empresa especializada em <strong>soluções digitais completas</strong> para empresas e pessoas físicas.</p>
+            <p>Com mais de <strong>10 anos de experiência</strong>, entregamos serviços de alta qualidade com atendimento personalizado.</p>
+            <p>Oferecemos <strong>atendimento remoto para todo Brasil</strong> e presencial na <strong>Região Metropolitana do Recife</strong>.</p>
+          </div>
+
+          <div class="sobre-valores">
+            <h3>Nossos Valores</h3>
+            <div class="valores-lista">
+              <div class="valor-item">
+                <div class="valor-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 2L3 14h7l-1 8 10-12h-7z" />
+                  </svg>
+                </div>
+                <div class="valor-info">
+                  <strong>Rapidez</strong>
+                  <p>Atendimento ágil e eficiente</p>
+                </div>
+              </div>
+
+              <div class="valor-item">
+                <div class="valor-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="12,2 2,8 6,20 18,20 22,8" />
+                  </svg>
+                </div>
+                <div class="valor-info">
+                  <strong>Qualidade</strong>
+                  <p>Profissionalismo garantido</p>
+                </div>
+              </div>
+
+              <div class="valor-item">
+                <div class="valor-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="6" width="20" height="12" rx="2" />
+                    <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+                  </svg>
+                </div>
+                <div class="valor-info">
+                  <strong>Preço Justo</strong>
+                  <p>Valores competitivos</p>
+                </div>
+              </div>
+
+              <div class="valor-item">
+                <div class="valor-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 12c0 2 3 5 6 5s4-2 6-2 4 2 6 2 6-3 6-5-3-5-6-5-4 2-6 2-4-2-6-2S2 10 2 12z" />
+                  </svg>
+                </div>
+                <div class="valor-info">
+                  <strong>Confiança</strong>
+                  <p>Segurança de seus dados</p>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="sobre-direita">
+          <div class="sobre-imagem">
+            <img src="https://i.ibb.co/JWDkxDpy/IMAGEM-ALTA-QUALIDADE.jpg" alt="Sobre De-Tech" style="width: 100%; height: 100%; border-radius: 20px; object-fit: cover;">
+          </div>
+
+          <div class="sobre-stats">
+            <div class="stat-item">
+              <div class="stat-numero">10+</div>
+              <p>Anos de Experiência</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-numero" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="7" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.4" />
+                  <path d="M8 7V5a4 4 0 0 1 8 0v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <p>Empresas Atendidas</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-numero" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4" />
+                  <path d="M2 12h20M12 2v20M4.5 4.5l15 15M19.5 4.5l-15 15" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" />
+                </svg>
+              </div>
+              <p>Abrangência Nacional</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-numero" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2l2.6 6.6L21 10l-5 3.8L17.2 21 12 17.6 6.8 21 8 13.8 3 10l6.4-1.4L12 2z" />
+                </svg>
+              </div>
+              <p>Satisfação Garantida</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Área onde serão injetados os cards das categorias -->
+    <section id="produtos-secao" class="produtos-area">
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq-secao" class="faq secao">
+      <div class="faq-container">
+        <div class="faq-header-left">
+          <h2 class="titulo-centro faq-titulo">Perguntas Frequentes</h2>
+          <p class="faq-subtitle">Tire suas dúvidas sobre nossos serviços</p>
+        </div>
+
+        <div class="faq-grid">
+        <details class="faq-item">
+          <summary>
+            <div class="faq-icon">⏱️</div>
+            <div class="faq-summary-text">Quanto tempo demora uma formatação?</div>
+          </summary>
+          <div class="faq-content">
+            <div class="faq-body">
+              <p>Entre 1h e 2h dependendo do modelo e condições do equipamento. Backup completo incluído.</p>
+            </div>
+            <img src="https://via.placeholder.com/350x200?text=Formatação" alt="Formatação" class="faq-image">
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <div class="faq-icon">💻</div>
+            <div class="faq-summary-text">Vocês fazem atendimento online?</div>
+          </summary>
+          <div class="faq-content">
+            <div class="faq-body">
+              <p>Sim! Muitos serviços são 100% digitais e podem ser realizados remotamente via TeamViewer ou AnyDesk com total segurança.</p>
+            </div>
+            <img src="https://via.placeholder.com/350x200?text=Atendimento+Online" alt="Atendimento Online" class="faq-image">
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <div class="faq-icon">💳</div>
+            <div class="faq-summary-text">Vocês aceitam PIX?</div>
+          </summary>
+          <div class="faq-content">
+            <div class="faq-body">
+              <p>Sim! O pagamento é feito via PIX gerado automaticamente. É rápido, seguro e sem tarifas.</p>
+            </div>
+            <img src="https://via.placeholder.com/350x200?text=PIX" alt="PIX" class="faq-image">
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <div class="faq-icon">🛡️</div>
+            <div class="faq-summary-text">Meus dados estão seguros?</div>
+          </summary>
+          <div class="faq-content">
+            <div class="faq-body">
+              <p>Sua privacidade é nossa prioridade! Utilizamos as melhores práticas de segurança digital e criptografia.</p>
+            </div>
+            <img src="https://via.placeholder.com/350x200?text=Segurança" alt="Segurança" class="faq-image">
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <div class="faq-icon">📱</div>
+            <div class="faq-summary-text">Vocês formatam celular?</div>
+          </summary>
+          <div class="faq-content">
+            <div class="faq-body">
+              <p>Sim! Oferecemos formatação, recuperação e limpeza completa de celulares de todas as marcas.</p>
+            </div>
+            <img src="https://via.placeholder.com/350x200?text=Celular" alt="Celular" class="faq-image">
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            <div class="faq-icon">🎨</div>
+            <div class="faq-summary-text">Vocês fazem design personalizado?</div>
+          </summary>
+          <div class="faq-content">
+            <div class="faq-body">
+              <p>Claro! Criamos logos, identidade visual, banners e muito mais conforme sua necessidade.</p>
+            </div>
+            <img src="https://via.placeholder.com/350x200?text=Design" alt="Design" class="faq-image">
+          </div>
+        </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="depoimentos secao">
+      <h2 class="titulo-centro">O que nossos clientes dizem</h2>
+
+      <div class="depoimentos-grid">
+        <div class="depoimento-card">⭐️⭐️⭐️⭐️⭐️  
+          “Serviço rápido, atencioso e preço justo! Recomendo demais.” — Ana P.
+        </div>
+
+        <div class="depoimento-card">⭐️⭐️⭐️⭐️⭐️  
+          “Recuperaram meu Instagram em menos de 1 hora!” — Marcos R.
+        </div>
+
+        <div class="depoimento-card">⭐️⭐️⭐️⭐️⭐️  
+          “Minha loja virtual ficou perfeita, muito profissional.” — Juliana S.
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final secao">
+      <div class="secao-box" style="text-align:center;">
+        <h2>Precisa de ajuda agora mesmo?</h2>
+        <p style="font-size: 18px; margin: 16px 0 24px 0;">Estamos prontos para atender você no WhatsApp.</p>
+
+        <a href="https://wa.me/558187945897?text=Olá, quero mais informações."
+           class="btn-whatsapp-chamada"
+           style="display: inline-block; background: #25d366; color: white; padding: 14px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 16px; transition: all 0.3s ease; margin-top: 8px;">
+          💬 Falar no WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section class="secao atendimento-secao">
+      <div class="atendimento-header">
+        <div class="atendimento-header-top" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+          <h2 class="titulo-centro atendimento-titulo">Área de Atendimento</h2>
+          <div class="atendimento-badge"><span class="badge-dot"></span> Online Agora</div>
+        </div>
+        <p class="atendimento-subtitle">Atendimentos 100% remotos para todo o Brasil. Agende pelo WhatsApp e realizamos diagnóstico e atendimento via TeamViewer/AnyDesk.</p>
+      </div>
+
+      <div class="atendimento-grid">
+        <div class="info-card online">
+          <div class="info-card-inner">
+                <div class="info-hero">
+                  <div class="info-icon" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21 11.5C21 16.194 16.97 20 12 20C10.365 20 8.81 19.586 7.44 18.83L3 20l1.17-4.59C3.45 14.63 3 13.11 3 11.5 3 6.806 7.03 3 12 3s9 3.806 9 8.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="info-title">
+                    <h3>Atendimento Remoto</h3>
+                    <p class="muted">Conexão segura e prática — resolvemos online</p>
+                  </div>
+                </div>
+
+            <p>Realizamos diagnósticos, manutenções e configurações remotamente com total segurança. Ideal para formatação, recuperação de contas, suporte a sites, e muito mais.</p>
+
+            <ul class="info-lista">
+              <li>✅ Acesso remoto seguro (TeamViewer / AnyDesk)</li>
+              <li>✅ Agendamento rápido e confirmação via WhatsApp</li>
+              <li>✅ Relatório e orientação após atendimento</li>
+            </ul>
+
+            <div class="info-actions">
+              <button type="button" class="btn-agendar" id="btnAgendar" onclick="openAgendamentoModal()">Agende Agora</button>
+              <a class="btn-contato outline" href="https://wa.me/558187945897?text=Ol%C3%A1%21%20Preciso%20de%20ajuda%20para%20escolher%20um%20servi%C3%A7o." target="_blank">Preciso de Ajuda</a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="atendimento-side">
+          <div class="card-horarios">
+            <h4>Horários Disponíveis</h4>
+            <ul class="horarios-list">
+              <li><strong>Seg–Sex:</strong> 09:00 — 18:00</li>
+              <li><strong>Resposta média via WhatsApp:</strong> <span class="tempo">~15 min</span></li>
+            </ul>
+            <p class="small-muted">Ao agendar, informe o melhor horário e um resumo do problema.</p>
+          </div>
+
+          <div class="card-preparo">
+            <h4>Como se preparar</h4>
+            <ol class="preparo-list">
+              <li>Tenha o acesso remoto pronto (TeamViewer / AnyDesk).</li>
+              <li>Faça backup dos arquivos importantes.</li>
+              <li>Mantenha o aparelho ligado e com boa conexão.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+      <!-- Agendamento Modal -->
+      <div id="agendamento-modal" class="payment-modal" aria-hidden="true">
+        <div class="box agendamento-box" role="dialog" aria-modal="true" aria-labelledby="agendamento-title">
+          <button class="close-carrinho" onclick="closeAgendamentoModal()" aria-label="Fechar">✕</button>
+          <h3 id="agendamento-title">Agendar Atendimento Online</h3>
+
+          <form id="agendamento-form" onsubmit="event.preventDefault(); enviarAgendamento();">
+            <label style="display:block;margin-top:12px;">Nome
+              <input id="agendamento-nome" type="text" placeholder="Seu nome" required style="width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid #e6eefc;" />
+            </label>
+
+            <label style="display:block;margin-top:12px;">Horário preferido
+              <input id="agendamento-horario" type="text" placeholder="Ex: Amanhã às 14:00" style="width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid #e6eefc;" />
+            </label>
+
+            <label style="display:block;margin-top:12px;">Resumo do problema
+              <textarea id="agendamento-resumo" rows="4" placeholder="Descreva brevemente o problema" required style="width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid #e6eefc;"></textarea>
+            </label>
+
+            <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end;">
+              <button type="submit" class="btn-agendar">Enviar para WhatsApp</button>
+              <button type="button" class="btn-contato outline" onclick="closeAgendamentoModal()">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    <section class="secao">
+      <div class="secao-box redes-sociais-box">
+        <h2 class="redes-titulo">Siga a De-Tech</h2>
+        <p class="redes-subtitulo">Conecte-se conosco e fique por dentro das novidades</p>
+        
+        <div class="redes-grid">
+          <a href="https://www.facebook.com/profile.php?id=61571169308519" target="_blank" class="rede-card facebook">
+            <div class="rede-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <h3>Facebook</h3>
+              <p>Veja nossos posts e atualizações</p>
+            </div>
+            <div class="rede-arrow">→</div>
+          </a>
+
+          <a href="https://instagram.com/de.techh" target="_blank" class="rede-card instagram">
+            <div class="rede-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="18" cy="6" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <h3>Instagram</h3>
+              <p>Acompanhe nossos trabalhos</p>
+            </div>
+            <div class="rede-arrow">→</div>
+          </a>
+
+          <a href="https://wa.me/558187945897" target="_blank" class="rede-card whatsapp">
+            <div class="rede-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a6.963 6.963 0 00-6.869 6.877c0 1.814.503 3.583 1.455 5.079L5 21.929l5.392-1.779c1.439.878 3.084 1.34 4.82 1.34h.004c3.806 0 6.873-3.068 6.873-6.877 0-1.836-.704-3.56-1.982-4.838-1.279-1.277-2.98-1.981-4.817-1.981z"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <h3>WhatsApp</h3>
+              <p>Converse conosco diretamente</p>
+            </div>
+            <div class="rede-arrow">→</div>
+          </a>
+        </div>
+
+        <div class="redes-footer">
+          <p>📱 Nos siga em todas as plataformas para não perder nenhuma novidade!</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTÃO WHATSAPP FLUTUANTE -->
+  <a href="https://wa.me/558187945897?text=Olá! Quero saber mais sobre os serviços da De-Tech." 
+     id="zap-btn" target="_blank" aria-label="WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+
+  <!-- CARRINHO -->
+  <div id="carrinho-box" class="carrinho-box" aria-hidden="true">
+    <h2>Carrinho <button class="close-carrinho" onclick="toggleCarrinho()">✖</button></h2>
+    <div id="lista-carrinho"></div>
+
+    <div class="carrinho-total">
+      <strong>Total: R$ <span id="total-carrinho">0.00</span></strong>
+      <button id="finalizar">Finalizar pelo WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- MODAL PAGAMENTO -->
+  <div id="payment-modal" class="payment-modal" aria-hidden="true">
+    <div class="box">
+      <h3>Pagamento PIX</h3>
+      <div id="payment-output"></div>
+      <button class="btn-adicionar" id="closePaymentBtn">Fechar</button>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+    <p>De-Tech — Soluções Digitais</p>
+    <small>Todos os direitos reservados © 2025</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
